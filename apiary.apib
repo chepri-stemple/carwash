@@ -91,16 +91,16 @@ Purchasable items available from the app owners car washes. Available at least o
 
     + Body
 
-        {
-            "id": 1,
-            "street": "1026 Hamilton Dr",
-            "city": "Holland",
-            "state": "OH",
-            "zip": "43528",
-            "phone": "4198674858",
-            "latitude": 41.6215264,
-            "longitude": -83.6999915,
-        }
+            {
+                "id": 1,
+                "street": "1026 Hamilton Dr",
+                "city": "Holland",
+                "state": "OH",
+                "zip": "43528",
+                "phone": "4198674858",
+                "latitude": 41.6215264,
+                "longitude": -83.6999915,
+            }
 
 ## Users [/users]
 
@@ -121,12 +121,13 @@ Returns an authentication token which will be used to identify this user going f
 
 + Response 201 (application/json)
 
-   + Body
+    + Body
+    
             {
-              "first_name": "Sean",
-              "last_name": "Temple",
-              "email_address": "stemple@chepri.com",
-              "auth_token": "65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ",
+                "first_name": "Sean",
+                "last_name": "Temple",
+                "email_address": "stemple@chepri.com",
+                "auth_token": "65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ",
             }
 
 ## User [/users/{auth_token}]
@@ -138,12 +139,12 @@ Returns an authentication token which will be used to identify this user going f
 
 + Response 200 (application/json)
 
-  {
-    "first_name": "Sean",
-    "last_name": "Temple",
-    "email_address": "stemple@chepri.com",
-    "auth_token": "65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ",
-  }
+        {
+            "first_name": "Sean",
+            "last_name": "Temple",
+            "email_address": "stemple@chepri.com",
+            "auth_token": "65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ",
+        }
 
 ### Expire user token [DELETE]
 
@@ -159,26 +160,26 @@ Product or Coupons that the user has purchased or claimed.
 
     + Body
 
-      [
-          {
-              "name": "Ultimate Wash",
-              "code": 012345678,
-              "expires_on": "",
-              "redeemed_at": "",
-          },
-          {
-              "name": "Premium Wash",
-              "code": 123456789,
-              "expires_on": "2017-04-01",
-              "redeemed_at": "2017-01-20T08:40:51.620Z",
-          },
-          {
-              "name": "$2 off any wash",
-              "code": 123456789,
-              "expires_on": "2017-04-01",
-              "redeemed_at": "2017-01-03T08:40:51.620Z",
-          }
-        ]
+            [
+                  {
+                      "name": "Ultimate Wash",
+                      "code": 012345678,
+                      "expires_on": "",
+                      "redeemed_at": "",
+                  },
+                  {
+                      "name": "Premium Wash",
+                      "code": 123456789,
+                      "expires_on": "2017-04-01",
+                      "redeemed_at": "2017-01-20T08:40:51.620Z",
+                  },
+                  {
+                      "name": "$2 off any wash",
+                      "code": 123456789,
+                      "expires_on": "2017-04-01",
+                      "redeemed_at": "2017-01-03T08:40:51.620Z",
+                  }
+            ]
 
 ## Forgot Password [/user/forgotpassword]
 
@@ -188,9 +189,9 @@ Request a password reset that will allow the user to change there
 
 + Request (application/json)
 
-  {
-    "email_address": "string",
-  }
+        {
+            "email_address": "string",
+        }
 
 + Response 204
 
@@ -204,22 +205,22 @@ Deals available for the user to claim. User is required to filter out claimed on
 
     + Body
 
-      [
-        {
-          "id": 1
-          "name": "$2 off any wash",
-          "description": "Claim this and get $2 off your next wash!",
-          "code": 123456789,
-          "expires_on": "2017-03-01",
-        },
-        {
-          "id": 2
-          "name": "Free add-on",
-          "description": "Buy any wash and get a free add-on!",
-          "code": 123456789,
-          "expires_on": "2017-04-01",
-        }
-       ]
+            [
+                {
+                  "id": 1
+                  "name": "$2 off any wash",
+                  "description": "Claim this and get $2 off your next wash!",
+                  "code": 123456789,
+                  "expires_on": "2017-03-01",
+                },
+                {
+                  "id": 2
+                  "name": "Free add-on",
+                  "description": "Buy any wash and get a free add-on!",
+                  "code": 123456789,
+                  "expires_on": "2017-04-01",
+                }
+            ]
 
 
 ## User Deal [/user/{auth_token}/deals/{deal_id}]
@@ -227,18 +228,17 @@ Deals available for the user to claim. User is required to filter out claimed on
 ### Get deal [GET]
 
 + Parameters
-  + auth_token:  (required, string) - 
+  + auth_token: 65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ (required, string) - 
   + deal_id: 1 (required, number) - ID of the deal
 
 + Response 200 (application/json)
 
     + Body
 
-        {
-          "id": 1
-          "name": "$2 off any wash",
-          "description": "Claim this and get $2 off your next wash!",
-          "code": 123456791,
-          "expires_on": "2017-03-01",
-        }
-
+            {
+                "id": 1
+                "name": "$2 off any wash",
+                "description": "Claim this and get $2 off your next wash!",
+                "code": 123456791,
+                "expires_on": "2017-03-01",
+            }
