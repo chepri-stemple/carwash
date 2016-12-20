@@ -1,0 +1,53 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# carwash
+
+Polls is a simple API allowing consumers to view polls and vote in them.
+
+## Questions Collection [/users/{user_token}]
+
+### Get a user [GET]
+
++ Response 200 (application/json)
+
+        {
+            "authtoken": "string",
+            "emailaddress": "string",
+            "firstname": "string",
+            "lastname": "string"
+        }
+
+## User operations [/users]
+
+### Create a user [POST]
+
+Returns an authentication token which will be used to identify this user going forward.
+
++ Request (application/json)
+
+        {
+          "firstname": "string",
+          "lastname": "string",
+          "emailaddress": "string",
+          "password": "string",
+          "contactnumber": "string",
+          "reference": "string",
+          "basketid": "string"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /users/2
+
+    + Body
+
+            {
+              "firstname": "Sean",
+              "lastname": "Temple",
+              "emailaddress": "stemple@chepri.com",
+              "authtoken": "65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ",
+              "contactnumber": ""
+            }
