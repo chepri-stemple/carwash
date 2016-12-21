@@ -80,7 +80,7 @@ Purchasable items available from the app owners car washes. Available at least o
             ]
 
 
-## Product [/product/{product_id}]
+## Product [/products/{product_id}]
 
 ### Get product [GET]
 
@@ -150,7 +150,7 @@ Returns an authentication token which will be used to identify this user going f
 
 + Response 204
 
-## User Rewards [/user/{auth_token}/rewards]
+## User Rewards [/users/{auth_token}/rewards]
 
 Product or Coupons that the user has purchased or claimed.
 
@@ -181,7 +181,7 @@ Product or Coupons that the user has purchased or claimed.
                   }
             ]
 
-## Forgot Password [/user/forgotpassword]
+## Forgot Password [/user/forgot_password]
 
 Request a password reset that will allow the user to change there 
 
@@ -195,7 +195,7 @@ Request a password reset that will allow the user to change there
 
 + Response 204
 
-## User Deals [/user/{auth_token}/deals]
+## User Deals [/users/{auth_token}/deals]
 
 Deals available for the user to claim. User is required to filter out claimed ones.
 
@@ -223,7 +223,7 @@ Deals available for the user to claim. User is required to filter out claimed on
             ]
 
 
-## User Deal [/user/{auth_token}/deals/{deal_id}]
+## User Deal [/users/{auth_token}/deals/{deal_id}]
 
 ### Get deal [GET]
 
