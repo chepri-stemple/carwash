@@ -52,9 +52,38 @@ Car wash locations for the apps owner.
 
 ## Products [/products]
 
-Purchasable items available from the app owners car washes. Available at least one of location, but not necessarily all locations.
+Purchasable items available from any of owners car washes. Available at least one of location, but not necessarily all locations.
 
-### Get a list of purchasable products [GET]
+### Get a list of all purchasable products across all locations [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "price": 15.00,
+                    "name": "Ultimate Wash",
+                    "descriptions": [
+                      { 
+                        "description": "Wash"
+                      },
+                      { 
+                        "description": "Under Carriage Blast"
+                      },
+                      { 
+                        "description": "Turbo Dry"
+                      },
+                    ]
+                }
+            ]
+
+## Products [/locations/{location_id}/products]
+
+Purchasable items available from this particular location. Available at least one of location, but not necessarily all locations.
+
+### Get a list of purchasable products for a location [GET]
 
 + Response 200 (application/json)
 
@@ -92,16 +121,22 @@ Purchasable items available from the app owners car washes. Available at least o
     + Body
 
             {
-                "id": 1,
-                "street": "1026 Hamilton Dr",
-                "city": "Holland",
-                "state": "OH",
-                "zip": "43528",
-                "phone": "4198674858",
-                "latitude": 41.6215264,
-                "longitude": -83.6999915,
+                    "id": 1,
+                    "price": 15.00,
+                    "name": "Ultimate Wash",
+                    "descriptions": [
+                      { 
+                        "description": "Wash"
+                      },
+                      { 
+                        "description": "Under Carriage Blast"
+                      },
+                      { 
+                        "description": "Turbo Dry"
+                      },
+                    ]
             }
-
+        
 ## Users [/users]
 
 User of the app. Can purchase car washes and redeem coupons.
@@ -197,9 +232,9 @@ Request a password reset that will allow the user to change there
 
 ## User Deals [/users/{auth_token}/deals]
 
-Deals available for the user to claim. User is required to filter out claimed ones.
+Deals available for the user to claim at any of the owners car washes. User is required to filter out claimed ones.
 
-### List [GET]
+### List Deals [GET]
 
 + Response 200 (application/json)
 
@@ -222,9 +257,35 @@ Deals available for the user to claim. User is required to filter out claimed on
                 }
             ]
 
+## User Deals [/users/{auth_token}/locations/{location_id}/deals]
+
+Deals available for the user to claim at a particular location. User is required to filter out claimed ones.
+
+### List User Deails for a location [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            [
+                {
+                  "id": 1
+                  "name": "$2 off any wash",
+                  "description": "Claim this and get $2 off your next wash!",
+                  "code": 123456789,
+                  "expires_on": "2017-03-01",
+                },
+                {
+                  "id": 2
+                  "name": "Free add-on",
+                  "description": "Buy any wash and get a free add-on!",
+                  "code": 123456789,
+                  "expires_on": "2017-04-01",
+                }
+            ]
 
 ## User Deal [/users/{auth_token}/deals/{deal_id}]
-
+loc
 ### Get deal [GET]
 
 + Parameters
@@ -242,3 +303,117 @@ Deals available for the user to claim. User is required to filter out claimed on
                 "code": 123456791,
                 "expires_on": "2017-03-01",
             }
+            
+## Credit Cards [/cards/{auth_token}]
+
++ Parameters
+  + auth_token: 65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ (required, string)
+
+### Get list of cards [GET] 
+
+Get the list of all the user's saved credit cards.
+
++ Response 200 (application/json)
+
+    + Body
+
+            [
+                {
+                    "id": 1
+                    "processor": "E-xact",
+                    "type": "Visa",
+                    "masked_number": "...1234",
+                    "exp_month": 10,
+                    "exp_year": 20,
+                    "token":  "abcdefg",
+                    "auth_number": "A12345"
+                },
+                {
+                    "id": 2
+                    "processor": "PaymentExpress",
+                    "type": "MasterCard",
+                    "masked_number": "...1234",
+                    "exp_month": 10,
+                    "exp_year": 20,
+                    "token":  "abcdefg"
+                }
+            ]
+            
+### Add new card [POST]
+
+Save a new credit card to the users account and return the updated list of cards.
+
++ Request (application/json)
+
+    + Body
+
+            [
+                {
+                    "processor": "E-xact",
+                    "type": "Visa",
+                    "masked_number": "...1234",
+                    "exp_month": 10,
+                    "exp_year": 20,
+                    "token":  "abcdefg",
+                    "auth_number": "A12345"
+                }
+            ]
+   
++ Response 201 (application/json)
+
+    + Body
+
+            [
+                {
+                    "id": 1
+                    "processor": "E-xact",
+                    "type": "Visa",
+                    "masked_number": "...1234",
+                    "exp_month": 10,
+                    "exp_year": 20,
+                    "token":  "abcdefg",
+                    "auth_number": "A12345"
+                },
+                {
+                    "id": 2
+                    "processor": "PaymentExpress",
+                    "type": "MasterCard",
+                    "masked_number": "...1234",
+                    "exp_month": 10,
+                    "exp_year": 20,
+                    "token":  "abcdefg"
+                }
+            ]
+
+### Delete a card [DELETE /cards/{auth_token}/{card_id}]
+
+Delete a saved card from the users account and return the updated list of cards.
+
++ Parameters
+   + card_id: 1 (required, number) 
+   
++ Response 200 (application/json)
+
+    + Body
+
+            [
+                {
+                    "id": 1
+                    "processor": "E-xact",
+                    "type": "Visa",
+                    "masked_number": "...1234",
+                    "exp_month": 10,
+                    "exp_year": 20,
+                    "token":  "abcdefg",
+                    "auth_number": "A12345"
+                },
+                {
+                    "id": 2
+                    "processor": "PaymentExpress",
+                    "type": "MasterCard",
+                    "masked_number": "...1234",
+                    "exp_month": 10,
+                    "exp_year": 20,
+                    "token":  "abcdefg"
+                }
+            ]
