@@ -124,8 +124,8 @@ Purchasable items available from this particular location. Available at least on
 ### Get product [GET]
 
 + Parameters
-    + product_id: 1 (required, number) - ID of the product
     + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
+    + product_id: 1 (required, number) - ID of the product
 
 + Response 200 (application/json)
 
@@ -182,8 +182,8 @@ Returns an authentication token which will be used to identify this user going f
 ## User [/{app_key}/users/{auth_token}]
 
 + Parameters
-    + auth_token (string) - token representing an authenticated user.
     + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
+    + auth_token (string) - token representing an authenticated user.
 
 ### Verify user token [GET]
 
@@ -207,8 +207,8 @@ Product or Coupons that the user has purchased or claimed.
 ### List [GET]
 
 + Parameters
-    + auth_token (string) - token representing an authenticated user.
     + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
+    + auth_token (string) - token representing an authenticated user.
 
 + Response 200 (application/json)
 
@@ -259,15 +259,15 @@ Deals available for the user to claim at any of the owners car washes. User is r
 ### List Deals [GET]
 
 + Parameters
-    + auth_token (string) - token representing an authenticated user.
     + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
+    + auth_token (string) - token representing an authenticated user.
 
 + Response 200 (application/json)
 
     + Body
 
             [
-                {
+                { 
                   "id": 1
                   "name": "$2 off any wash",
                   "description": "Claim this and get $2 off your next wash!",
