@@ -170,20 +170,39 @@ Returns an authentication token which will be used to identify this user going f
 
 + Response 201 (application/json)
 
-    + Body
-    
-            {
-                "first_name": "Sean",
-                "last_name": "Temple",
-                "email_address": "stemple@chepri.com",
-                "auth_token": "65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ",
-            }
+        {
+            "first_name": "Sean",
+            "last_name": "Temple",
+            "email_address": "stemple@chepri.com",
+            "auth_token": "65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ",
+        }
+
 
 ## User [/{app_key}/users/{auth_token}]
 
 + Parameters
     + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
     + auth_token (string) - token representing an authenticated user.
+
+### Update user [PUT]
+
++ Request (application/json)
+
+        {
+          "first_name": "string",
+          "last_name": "string",
+          "email_address": "string",
+          "password": "string",
+        }
+
++ Response 200 (application/json)
+
+        {
+            "first_name": "Sean",
+            "last_name": "Temple",
+            "email_address": "stemple@chepri.com",
+            "auth_token": "65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ",
+        }
 
 ### Verify user token [GET]
 
