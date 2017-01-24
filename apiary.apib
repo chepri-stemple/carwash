@@ -283,6 +283,55 @@ Deals available for the user to claim at any of the owners car washes. User is r
                 }
             ]
 
+## User Deals2 [/{app_key}/users/{auth_token}/deals2]
+
+Deals available for the user to claim at any of the owners car washes. User is required to filter out claimed ones.
+
+### List Deals2 [GET]
+
++ Parameters
+    + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
+    + auth_token (string) - token representing an authenticated user.
+
++ Response 200 (application/json)
+
+        [
+            { 
+                "id": 1
+                "name": "$2 off any wash",
+                "description": "Claim this and get $2 off your next wash!",
+                "expires_on": "2017-03-01",
+                "claim_limit": 3,
+                "claimed":
+                {
+                    {
+                        "claimed_on": "2017-01-13 13:54:23",
+                        "code": "012345678",
+                        "expires_on": "",
+                        "max_uses": 1,
+                        "use_count": 1,
+                        "last_used": "2017-01-13 13:56:13"
+                    },
+                    {
+                        "claimed_on": "2017-01-15 11:37:45",
+                        "code": "019876543",
+                        "expires_on": ""
+                        "max_uses": 1,
+                        "use_count": 1,
+                        "last_used": ""
+                    }
+                }
+            },
+            {
+                "id": 2
+                "name": "Free add-on",
+                "description": "Buy any wash and get a free add-on!",
+                "expires_on": "2017-04-01",
+                "claim_limit": 1
+            }
+        ]
+
+
 ## User Deals [/{app_key}/users/{auth_token}/locations/{location_id}/deals]
 
 Deals available for the user to claim at a particular location. User is required to filter out claimed ones.
@@ -348,29 +397,27 @@ Get the list of all the user's saved credit cards.
 
 + Response 200 (application/json)
 
-    + Body
-
-            [
-                {
-                    "id": 1
-                    "processor": "E-xact",
-                    "type": "Visa",
-                    "masked_number": "...1234",
-                    "exp_month": 10,
-                    "exp_year": 20,
-                    "token":  "abcdefg",
-                    "auth_number": "A12345"
-                },
-                {
-                    "id": 2
-                    "processor": "PaymentExpress",
-                    "type": "MasterCard",
-                    "masked_number": "...1234",
-                    "exp_month": 10,
-                    "exp_year": 20,
-                    "token":  "abcdefg"
-                }
-            ]
+        [
+            {
+                "id": 1
+                "processor": "E-xact",
+                "type": "Visa",
+                "masked_number": "...1234",
+                "exp_month": 10,
+                "exp_year": 20,
+                "token":  "abcdefg",
+                "auth_number": "A12345"
+            },
+            {
+                "id": 2
+                "processor": "PaymentExpress",
+                "type": "MasterCard",
+                "masked_number": "...1234",
+                "exp_month": 10,
+                "exp_year": 20,
+                "token":  "abcdefg"
+            }
+        ]
             
 ### Add new card [POST]
 
@@ -378,45 +425,41 @@ Save a new credit card to the users account and return the updated list of cards
 
 + Request (application/json)
 
-    + Body
-
-            [
-                {
-                    "processor": "E-xact",
-                    "type": "Visa",
-                    "masked_number": "...1234",
-                    "exp_month": 10,
-                    "exp_year": 20,
-                    "token":  "abcdefg",
-                    "auth_number": "A12345"
-                }
-            ]
+        [
+            {
+                "processor": "E-xact",
+                "type": "Visa",
+                "masked_number": "...1234",
+                "exp_month": 10,
+                "exp_year": 20,
+                "token":  "abcdefg",
+                "auth_number": "A12345"
+            }
+        ]
    
 + Response 201 (application/json)
 
-    + Body
-
-            [
-                {
-                    "id": 1
-                    "processor": "E-xact",
-                    "type": "Visa",
-                    "masked_number": "...1234",
-                    "exp_month": 10,
-                    "exp_year": 20,
-                    "token":  "abcdefg",
-                    "auth_number": "A12345"
-                },
-                {
-                    "id": 2
-                    "processor": "PaymentExpress",
-                    "type": "MasterCard",
-                    "masked_number": "...1234",
-                    "exp_month": 10,
-                    "exp_year": 20,
-                    "token":  "abcdefg"
-                }
-            ]
+        [
+            {
+                "id": 1
+                "processor": "E-xact",
+                "type": "Visa",
+                "masked_number": "...1234",
+                "exp_month": 10,
+                "exp_year": 20,
+                "token":  "abcdefg",
+                "auth_number": "A12345"
+            },
+            {
+                "id": 2
+                "processor": "PaymentExpress",
+                "type": "MasterCard",
+                "masked_number": "...1234",
+                "exp_month": 10,
+                "exp_year": 20,
+                "token":  "abcdefg"
+            }
+        ]
 
 ### Delete a card [DELETE /{app_key}/cards/{auth_token}/{card_id}]
 
@@ -428,26 +471,24 @@ Delete a saved card from the users account and return the updated list of cards.
    
 + Response 200 (application/json)
 
-    + Body
-
-            [
-                {
-                    "id": 1
-                    "processor": "E-xact",
-                    "type": "Visa",
-                    "masked_number": "...1234",
-                    "exp_month": 10,
-                    "exp_year": 20,
-                    "token":  "abcdefg",
-                    "auth_number": "A12345"
-                },
-                {
-                    "id": 2
-                    "processor": "PaymentExpress",
-                    "type": "MasterCard",
-                    "masked_number": "...1234",
-                    "exp_month": 10,
-                    "exp_year": 20,
-                    "token":  "abcdefg"
-                }
-            ]
+        [
+            {
+                "id": 1
+                "processor": "E-xact",
+                "type": "Visa",
+                "masked_number": "...1234",
+                "exp_month": 10,
+                "exp_year": 20,
+                "token":  "abcdefg",
+                "auth_number": "A12345"
+            },
+            {
+                "id": 2
+                "processor": "PaymentExpress",
+                "type": "MasterCard",
+                "masked_number": "...1234",
+                "exp_month": 10,
+                "exp_year": 20,
+                "token":  "abcdefg"
+            }
+        ]
