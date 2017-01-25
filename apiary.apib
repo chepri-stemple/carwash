@@ -5,14 +5,11 @@ HOST: https://api-server.dev
 
 API for mobile app to allow users to purchase and gift car washes.
 
-## Locations [/{app_key}/locations]
+## Locations [/locations]
 
 Car wash locations for the apps owner.
 
 ### List all locations [GET]
-
-+ Parameters
-    + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
 
 + Response 200 (application/json)
 
@@ -31,13 +28,12 @@ Car wash locations for the apps owner.
                 }
             ]
 
-## Location [/{app_key}/location/{location_id}]
+## Location [/location/{location_id}]
 
 ### Get location [GET]
 
 + Parameters
     + location_id: 1 (required, number) - ID of the Location
-    + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
 
 + Response 200 (application/json)
 
@@ -54,15 +50,12 @@ Car wash locations for the apps owner.
                   "longitude": -83.6999915,
               }
 
-## Products [/{app_key}/products]
+## Products [/products]
 
 Purchasable items available from any of owners car washes. Available at least one of location, but not necessarily all locations.
 
 ### Get a list of all purchasable products across all locations [GET]
 
-+ Parameters
-    + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
-
 + Response 200 (application/json)
 
     + Body
@@ -86,15 +79,12 @@ Purchasable items available from any of owners car washes. Available at least on
                 }
             ]
 
-## Products [/{app_key}/locations/{location_id}/products]
+## Products [/locations/{location_id}/products]
 
 Purchasable items available from this particular location. Available at least one of location, but not necessarily all locations.
 
 ### Get a list of purchasable products for a location [GET]
 
-+ Parameters
-    + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
-
 + Response 200 (application/json)
 
     + Body
@@ -119,12 +109,11 @@ Purchasable items available from this particular location. Available at least on
             ]
 
 
-## Product [/{app_key}/products/{product_id}]
+## Product [/products/{product_id}]
 
 ### Get product [GET]
 
 + Parameters
-    + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
     + product_id: 1 (required, number) - ID of the product
 
 + Response 200 (application/json)
@@ -148,16 +137,13 @@ Purchasable items available from this particular location. Available at least on
                     ]
             }
         
-## Users [/{app_key}/users]
+## Users [/users]
 
 User of the app. Can purchase car washes and redeem coupons.
 
 ### Create a user [POST]
 
 Returns an authentication token which will be used to identify this user going forward.
-
-+ Parameters
-    + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
 
 + Request (application/json)
 
@@ -178,13 +164,12 @@ Returns an authentication token which will be used to identify this user going f
         }
 
 
-## User [/{app_key}/users/{auth_token}]
+## User [/users/{auth_token}]
 
 + Parameters
-    + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
     + auth_token (string) - token representing an authenticated user.
 
-### Update user [PUT]
+### Update user [PATCH]
 
 + Request (application/json)
 
@@ -219,14 +204,13 @@ Returns an authentication token which will be used to identify this user going f
 
 + Response 204
 
-## User Rewards [/{app_key}/users/{auth_token}/rewards]
+## User Rewards [/users/{auth_token}/rewards]
 
 Product or Coupons that the user has purchased or claimed.
 
 ### List [GET]
 
 + Parameters
-    + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
     + auth_token (string) - token representing an authenticated user.
 
 + Response 200 (application/json)
@@ -254,14 +238,11 @@ Product or Coupons that the user has purchased or claimed.
                   }
             ]
 
-## Forgot Password [/{app_key}/user/forgot_password]
+## Forgot Password [/user/forgot_password]
 
 Request a password reset that will allow the user to change there 
 
 ### Create a forgot password request [POST]
-
-+ Parameters
-    + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
 
 + Request (application/json)
 
@@ -271,14 +252,13 @@ Request a password reset that will allow the user to change there
 
 + Response 204
 
-## User Deals [/{app_key}/users/{auth_token}/deals]
+## User Deals [/users/{auth_token}/deals]
 
 Deals available for the user to claim at any of the owners car washes. User is required to filter out claimed ones.
 
 ### List Deals [GET]
 
 + Parameters
-    + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
     + auth_token (string) - token representing an authenticated user.
 
 + Response 200 (application/json)
@@ -302,14 +282,13 @@ Deals available for the user to claim at any of the owners car washes. User is r
                 }
             ]
 
-## User Deals2 [/{app_key}/users/{auth_token}/deals2]
+## User Deals2 [/users/{auth_token}/deals2]
 
 Deals available for the user to claim at any of the owners car washes. User is required to filter out claimed ones.
 
 ### List Deals2 [GET]
 
 + Parameters
-    + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
     + auth_token (string) - token representing an authenticated user.
 
 + Response 200 (application/json)
@@ -351,7 +330,7 @@ Deals available for the user to claim at any of the owners car washes. User is r
         ]
 
 
-## User Deals [/{app_key}/users/{auth_token}/locations/{location_id}/deals]
+## User Deals [/users/{auth_token}/locations/{location_id}/deals]
 
 Deals available for the user to claim at a particular location. User is required to filter out claimed ones.
 
@@ -360,7 +339,6 @@ Deals available for the user to claim at a particular location. User is required
 + Parameters
     + location_id: 1 (required, number) - ID of the Location
     + auth_token (string) - token representing an authenticated user.
-    + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
 
 + Response 200 (application/json)
 
@@ -383,12 +361,11 @@ Deals available for the user to claim at a particular location. User is required
                 }
             ]
 
-## User Deal [/{app_key}/users/{auth_token}/deals/{deal_id}]
+## User Deal [/users/{auth_token}/deals/{deal_id}]
 loc
 ### Get deal [GET]
 
 + Parameters
-    + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
     + auth_token: 65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ (required, string) - 
     + deal_id: 1 (required, number) - ID of the deal
 
@@ -404,10 +381,9 @@ loc
                 "expires_on": "2017-03-01",
             }
             
-## Credit Cards [/{app_key}/cards/{auth_token}]
+## Credit Cards [/cards/{auth_token}]
 
 + Parameters
-    + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
     + auth_token: 65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ (required, string)
 
 ### Get list of cards [GET] 
@@ -480,12 +456,11 @@ Save a new credit card to the users account and return the updated list of cards
             }
         ]
 
-### Delete a card [DELETE /{app_key}/cards/{auth_token}/{card_id}]
+### Delete a card [DELETE /cards/{auth_token}/{card_id}]
 
 Delete a saved card from the users account and return the updated list of cards.
 
 + Parameters
-    + app_key: NfQo7MYpXLXyq2gXvfjH (required) - A unique key that identifies the branded app and associates it with a Hosted Solutions account.
     + card_id: 1 (required, number) 
    
 + Response 200 (application/json)
