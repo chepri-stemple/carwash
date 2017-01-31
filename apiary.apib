@@ -238,6 +238,29 @@ Product or Coupons that the user has purchased or claimed.
                   }
             ]
 
+## User log in [/user/login]
+
+Log in if the auth token is expired or invalid
+
+### Log in [POST]
+
++ Request (application/json)
+
+        {
+            "email_address": "string",
+            "password": "string",
+        }
+
++ Response 200
+
+        {
+            "first_name": "Sean",
+            "last_name": "Temple",
+            "email_address": "stemple@chepri.com",
+            "auth_token": "65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ",
+        }
+
+
 ## Forgot Password [/user/forgot_password]
 
 Request a password reset that will allow the user to change there 
