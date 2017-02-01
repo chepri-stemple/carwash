@@ -9,46 +9,57 @@ API for mobile app to allow users to purchase and gift car washes.
 
 Car wash locations for the apps owner.
 
-### List all locations [GET]
+### Get All Locations [GET]
 
++ Request (application/json)
+
+     + Header
+    
+            app_key: 71d6ed46ab67aa4602c8c41c64c4b954
+            
 + Response 200 (application/json)
 
     + Body
-
+    
             [
                 {
-                    "id": 1,
-                    "street": "1026 Hamilton Dr",
+                    "id": 123456789,
+                    "address1": "1026 Hamilton Dr",
+                    "address2": "",
                     "city": "Holland",
                     "state": "OH",
                     "zip": "43528",
                     "phone": "4198674858",
-                    "latitude": 41.6215264,
-                    "longitude": -83.6999915,
+                    "description": ""
                 }
             ]
 
-## Location [/location/{location_id}]
-
-### Get location [GET]
+### Get Location [GET /locations/{location_id}]
 
 + Parameters
     + location_id: 1 (required, number) - ID of the Location
 
++ Request (application/json)
+
+     + Header
+    
+            app_key: 71d6ed46ab67aa4602c8c41c64c4b954
+
 + Response 200 (application/json)
 
     + Body
+    
+            {
+                "id": 123456789,
+                "address1": "1026 Hamilton Dr",
+                "address2": "",
+                "city": "Holland",
+                "state": "OH",
+                "zip": "43528",
+                "phone": "4198674858",
+                "description": ""
+            }
 
-              {
-                  "id": 1,
-                  "street": "1026 Hamilton Dr",
-                  "city": "Holland",
-                  "state": "OH",
-                  "zip": "43528",
-                  "phone": "4198674858",
-                  "latitude": 41.6215264,
-                  "longitude": -83.6999915,
-              }
 
 ## Products [/products]
 
@@ -141,18 +152,24 @@ Purchasable items available from this particular location. Available at least on
 
 User of the app. Can purchase car washes and redeem coupons.
 
-### Create a user [POST]
+### Create User [POST]
 
 Returns an authentication token which will be used to identify this user going forward.
 
 + Request (application/json)
+    
+    + Header
+    
+            app_key: 71d6ed46ab67aa4602c8c41c64c4b954
+    
+    + Body
 
-        {
-          "first_name": "string",
-          "last_name": "string",
-          "email_address": "string",
-          "password": "string",
-        }
+            {
+              "first_name": "string",
+              "last_name": "string",
+              "email_address": "string",
+              "password": "string",
+            }
 
 + Response 201 (application/json)
 
@@ -163,22 +180,73 @@ Returns an authentication token which will be used to identify this user going f
             "auth_token": "65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ",
         }
 
+### Log In [POST /users/login]
 
-## User [/users/{auth_token}]
+Log in if the auth token is expired or invalid
+
++ Request (application/json)
+
+    + Header
+    
+            app_key: 71d6ed46ab67aa4602c8c41c64c4b954
+    
+    + Body
+    
+            {
+                "email_address": "string",
+                "password": "string",
+            }
+
++ Response 200
+
+        {
+            "first_name": "Sean",
+            "last_name": "Temple",
+            "email_address": "stemple@chepri.com",
+            "auth_token": "65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ",
+        }
+
+### Request Password [POST /users/forgot_password]
+
+Request a password reset that will allow the user to change there 
+
++ Request (application/json)
+
+    + Header
+    
+            app_key: 71d6ed46ab67aa4602c8c41c64c4b954
+    
+    + Body
+    
+            {
+                "email_address": "string",
+            }
+
++ Response 204
+
+
+
+##  Authorized Users [/users/{auth_token}]
 
 + Parameters
     + auth_token (string) - token representing an authenticated user.
 
-### Update user [PATCH]
+### Update User [PATCH] 
 
 + Request (application/json)
 
-        {
-          "first_name": "string",
-          "last_name": "string",
-          "email_address": "string",
-          "password": "string",
-        }
+     + Header
+    
+            app_key: 71d6ed46ab67aa4602c8c41c64c4b954
+    
+    + Body
+    
+            {
+              "first_name": "string",
+              "last_name": "string",
+              "email_address": "string",
+              "password": "string",
+            }
 
 + Response 200 (application/json)
 
@@ -189,7 +257,14 @@ Returns an authentication token which will be used to identify this user going f
             "auth_token": "65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ",
         }
 
-### Verify user token [GET]
+### Verify User Token [GET /users/{auth_token}]
+
++ Request
+
+     + Header
+    
+            app_key: 71d6ed46ab67aa4602c8c41c64c4b954
+
 
 + Response 200 (application/json)
 
@@ -200,7 +275,13 @@ Returns an authentication token which will be used to identify this user going f
             "auth_token": "65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ",
         }
 
-### Expire user token [DELETE]
+### Expire User token [DELETE]
+
++ Request
+
+     + Header
+    
+            app_key: 71d6ed46ab67aa4602c8c41c64c4b954
 
 + Response 204
 
@@ -238,42 +319,6 @@ Product or Coupons that the user has purchased or claimed.
                   }
             ]
 
-## User log in [/user/login]
-
-Log in if the auth token is expired or invalid
-
-### Log in [POST]
-
-+ Request (application/json)
-
-        {
-            "email_address": "string",
-            "password": "string",
-        }
-
-+ Response 200
-
-        {
-            "first_name": "Sean",
-            "last_name": "Temple",
-            "email_address": "stemple@chepri.com",
-            "auth_token": "65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ",
-        }
-
-
-## Forgot Password [/user/forgot_password]
-
-Request a password reset that will allow the user to change there 
-
-### Create a forgot password request [POST]
-
-+ Request (application/json)
-
-        {
-            "email_address": "string",
-        }
-
-+ Response 204
 
 ## User Deals [/users/{auth_token}/deals]
 
