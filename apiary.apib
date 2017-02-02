@@ -30,14 +30,24 @@ Car wash locations for the apps owner.
                     "state": "OH",
                     "zip": "43528",
                     "phone": "4198674858",
-                    "description": ""
+                    "descriptions": [
+                        { 
+                            "description": "Full service location!"
+                        },
+                        { 
+                            "description": "Hours:"
+                        },
+                        { 
+                            "description": "Mon - Sun: 8AM to 8PM"
+                        }
+                    ]
                 }
             ]
 
 ### Get Location [GET /locations/{location_id}]
 
 + Parameters
-    + location_id: 1 (required, number) - ID of the Location
+    + location_id: 123456789 (number, required) - ID of the Location
 
 + Request (application/json)
 
@@ -57,7 +67,17 @@ Car wash locations for the apps owner.
                 "state": "OH",
                 "zip": "43528",
                 "phone": "4198674858",
-                "description": ""
+                    "descriptions": [
+                        { 
+                            "description": "1026 Hamilton Dr"
+                        },
+                        { 
+                            "description": "Hours:"
+                        },
+                        { 
+                            "description": "Mon - Sun: 8AM to 8PM"
+                        }
+                    ]
             }
 
 
@@ -65,11 +85,21 @@ Car wash locations for the apps owner.
 
 Purchasable items available from any of owners car washes. Available at least one of location, but not necessarily all locations.
 
-### Get a list of all purchasable products across all locations [GET]
+### Get All Products [GET]
+
+Get a list all products for all locations.
+
++ Request
+
+     + Header
+    
+            app_key: 71d6ed46ab67aa4602c8c41c64c4b954
+
 
 + Response 200 (application/json)
 
-    + Body
+        
+   + Body
 
             [
                 {
@@ -90,47 +120,23 @@ Purchasable items available from any of owners car washes. Available at least on
                 }
             ]
 
-## Products [/locations/{location_id}/products]
+### Get Product [GET /products/{product_id}]
 
-Purchasable items available from this particular location. Available at least one of location, but not necessarily all locations.
-
-### Get a list of purchasable products for a location [GET]
-
-+ Response 200 (application/json)
-
-    + Body
-
-            [
-                {
-                    "id": 1,
-                    "price": 15.00,
-                    "name": "Ultimate Wash",
-                    "descriptions": [
-                      { 
-                        "description": "Wash"
-                      },
-                      { 
-                        "description": "Under Carriage Blast"
-                      },
-                      { 
-                        "description": "Turbo Dry"
-                      },
-                    ]
-                }
-            ]
-
-
-## Product [/products/{product_id}]
-
-### Get product [GET]
+Get a specific product by product ID.
 
 + Parameters
-    + product_id: 1 (required, number) - ID of the product
+    + product_id: 1 (number, required) - ID of the product
+
++ Request
+
+     + Header
+     
+            app_key: 71d6ed46ab67aa4602c8c41c64c4b954
 
 + Response 200 (application/json)
 
     + Body
-
+    
             {
                     "id": 1,
                     "price": 15.00,
@@ -147,7 +153,45 @@ Purchasable items available from this particular location. Available at least on
                       },
                     ]
             }
-        
+
+### Get All Location Products[GET /products/location/{location_id}]
+
+Get a list of all products avaiable at a specific location.
+
++ Parameters
+    + location_id: 123456789 (number, required) - ID of the Location
+
++ Request
+
+     + Header
+    
+            app_key: 71d6ed46ab67aa4602c8c41c64c4b954
+
+
++ Response 200 (application/json)
+
+    + Body
+    
+            [
+                {
+                    "id": 1,
+                    "price": 15.00,
+                    "name": "Ultimate Wash",
+                    "descriptions": [
+                      { 
+                        "description": "Wash"
+                      },
+                      { 
+                        "description": "Under Carriage Blast"
+                      },
+                      { 
+                        "description": "Turbo Dry"
+                      },
+                    ]
+                }
+            ]
+
+
 ## Users [/users]
 
 User of the app. Can purchase car washes and redeem coupons.
@@ -206,7 +250,7 @@ Log in if the auth token is expired or invalid
             "auth_token": "65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ",
         }
 
-### Request Password [POST /users/forgot_password]
+### Request Password Reset [POST /users/forgot_password]
 
 Request a password reset that will allow the user to change there 
 
@@ -224,12 +268,32 @@ Request a password reset that will allow the user to change there
 
 + Response 204
 
+### Verify Password Reset Code [POST /users/forgot_password/{code}]
+
+Verify the code emailed to the user before allowing the password to be changed. 
+
++ Parameters
+    + code: 123456 (number, required) Password reset verification code.
+
++ Request (application/json)
+
+    + Header
+    
+            app_key: 71d6ed46ab67aa4602c8c41c64c4b954
+    
+    + Body
+    
+            {
+                "email_address": "string",
+            }
+
++ Response 204
 
 
 ##  Authorized Users [/users/{auth_token}]
 
 + Parameters
-    + auth_token (string) - token representing an authenticated user.
+    + auth_token (string, required) - token representing an authenticated user.
 
 ### Update User [PATCH] 
 
@@ -292,32 +356,56 @@ Product or Coupons that the user has purchased or claimed.
 ### List [GET]
 
 + Parameters
-    + auth_token (string) - token representing an authenticated user.
+    + auth_token (string, required) - token representing an authenticated user.
 
 + Response 200 (application/json)
 
+     + Header
+    
+            app_key: 71d6ed46ab67aa4602c8c41c64c4b954
+            
     + Body
-
-            [
-                  {
-                      "name": "Ultimate Wash",
-                      "code": 012345678,
-                      "expires_on": "",
-                      "redeemed_at": "",
-                  },
-                  {
-                      "name": "Premium Wash",
-                      "code": 123456789,
-                      "expires_on": "2017-04-01",
-                      "redeemed_at": "2017-01-20T08:40:51.620Z",
-                  },
-                  {
-                      "name": "$2 off any wash",
-                      "code": 123456789,
-                      "expires_on": "2017-04-01",
-                      "redeemed_at": "2017-01-03T08:40:51.620Z",
-                  }
-            ]
+    
+            { 
+                "products": 
+                [
+                    {
+                        "id": 1
+                        "name": "Ultimate Wash",
+                        "code": 012345678,
+                        "claimed_on": "2017-01-13 13:54:23",
+                        "code": "012345678",
+                        "expires_on": ""
+                        "max_uses": 1,
+                        "use_count": 1,
+                        "last_used": "2017-01-13 13:56:13"
+                   },
+                    {
+                        "id": 2
+                        "name": "Premium Wash",
+                        "code": 123456789,
+                        "expires_on": "2017-04-01",
+                        "redeemed_at": "2017-01-20T08:40:51.620Z",
+                        "max_uses": 5,
+                        "use_count": 1,
+                        "last_used": "2017-01-13 13:56:13"
+                    }
+                ],
+                "deals":
+                [
+                    {
+                        "deal_id": 1
+                        "name": "$2 off any wash",
+                        "description": "Claim this and get $2 off your next wash!",
+                        "code": 123456789,
+                        "expires_on": "2017-04-01",
+                        "redeemed_at": "2017-01-03T08:40:51.620Z",
+                        "max_uses": 1,
+                        "use_count": 0,
+                        "last_used": ""
+                    }
+                ]
+            }
 
 
 ## User Deals [/users/{auth_token}/deals]
@@ -327,124 +415,89 @@ Deals available for the user to claim at any of the owners car washes. User is r
 ### List Deals [GET]
 
 + Parameters
-    + auth_token (string) - token representing an authenticated user.
+    + auth_token (required, string) - token representing an authenticated user.
 
 + Response 200 (application/json)
 
+     + Header
+    
+            app_key: 71d6ed46ab67aa4602c8c41c64c4b954
+            
     + Body
-
+    
             [
                 { 
-                  "id": 1
-                  "name": "$2 off any wash",
-                  "description": "Claim this and get $2 off your next wash!",
-                  "code": 123456789,
-                  "expires_on": "2017-03-01",
+                    "id": 1
+                    "name": "$2 off any wash",
+                    "description": "Claim this and get $2 off your next wash!",
+                    "terms": "May not be conmbined with any other offer."
+                    "expires_on": "2017-03-01",
+                    "claim_limit": 3,
+                    "number_claimed": 2,
+                    "locations": [123456789, 111222333, 666777888]
                 },
                 {
-                  "id": 2
-                  "name": "Free add-on",
-                  "description": "Buy any wash and get a free add-on!",
-                  "code": 123456789,
-                  "expires_on": "2017-04-01",
+                    "id": 2
+                    "name": "$3 off the Ultimate",
+                    "description": "Claim this and get $2 off your next wash!",
+                    "terms": "May not be conmbined with any other offer."
+                    "expires_on": "2017-03-01",
+                    "claim_limit": 1,
+                    "number_claimed": 0,
+                    "locations": [123456789, 111222333]
                 }
             ]
+            
+### List Deails for a Location [GET /users/{auth_token}/deals/locations/{location_id}]
 
-## User Deals2 [/users/{auth_token}/deals2]
-
-Deals available for the user to claim at any of the owners car washes. User is required to filter out claimed ones.
-
-### List Deals2 [GET]
+Deals available for the user to claim at a particular location.  User is required to filter out claimed ones.
 
 + Parameters
-    + auth_token (string) - token representing an authenticated user.
+    + location_id: 666777888 (number, required) - ID of the Location
+    + auth_token (string, required) - token representing an authenticated user.
 
 + Response 200 (application/json)
 
-        [
-            { 
-                "id": 1
-                "name": "$2 off any wash",
-                "description": "Claim this and get $2 off your next wash!",
-                "expires_on": "2017-03-01",
-                "claim_limit": 3,
-                "claimed":
-                {
-                    {
-                        "claimed_on": "2017-01-13 13:54:23",
-                        "code": "012345678",
-                        "expires_on": "",
-                        "max_uses": 1,
-                        "use_count": 1,
-                        "last_used": "2017-01-13 13:56:13"
-                    },
-                    {
-                        "claimed_on": "2017-01-15 11:37:45",
-                        "code": "019876543",
-                        "expires_on": ""
-                        "max_uses": 1,
-                        "use_count": 1,
-                        "last_used": ""
-                    }
-                }
-            },
-            {
-                "id": 2
-                "name": "Free add-on",
-                "description": "Buy any wash and get a free add-on!",
-                "expires_on": "2017-04-01",
-                "claim_limit": 1
-            }
-        ]
-
-
-## User Deals [/users/{auth_token}/locations/{location_id}/deals]
-
-Deals available for the user to claim at a particular location. User is required to filter out claimed ones.
-
-### List User Deails for a location [GET]
-
-+ Parameters
-    + location_id: 1 (required, number) - ID of the Location
-    + auth_token (string) - token representing an authenticated user.
-
-+ Response 200 (application/json)
-
+     + Header
+    
+            app_key: 71d6ed46ab67aa4602c8c41c64c4b954
+            
     + Body
-
+    
             [
-                {
-                  "id": 1
-                  "name": "$2 off any wash",
-                  "description": "Claim this and get $2 off your next wash!",
-                  "code": 123456789,
-                  "expires_on": "2017-03-01",
-                },
-                {
-                  "id": 2
-                  "name": "Free add-on",
-                  "description": "Buy any wash and get a free add-on!",
-                  "code": 123456789,
-                  "expires_on": "2017-04-01",
+                { 
+                    "id": 1
+                    "name": "$2 off any wash",
+                    "description": "Claim this and get $2 off your next wash!",
+                    "terms": "May not be conmbined with any other offer."
+                    "expires_on": "2017-03-01",
+                    "claim_limit": 3,
+                    "number_claimed": 2,
+                    "locations": [123456789, 111222333, 666777888]
                 }
             ]
 
-## User Deal [/users/{auth_token}/deals/{deal_id}]
-loc
-### Get deal [GET]
+### Claim Deal [POST /users/{auth_token}/deals/{deal_id}]
 
 + Parameters
-    + auth_token: 65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ (required, string) - 
-    + deal_id: 1 (required, number) - ID of the deal
+    + deal_id: 1 (number, required) The ID of the deal to be claimed.
 
-+ Response 200 (application/json)
++ Request 
 
-    + Body
+    + Header
+    
+            app_key: 71d6ed46ab67aa4602c8c41c64c4b954
+
++ Response 200
 
             {
                 "id": 1
                 "name": "$2 off any wash",
                 "description": "Claim this and get $2 off your next wash!",
-                "code": 123456791,
-                "expires_on": "2017-03-01",
+                "expires_on": "",
+                "claim_limit": 1,
+                "number_claimed": 0,
+                "claimed_on": "2017-01-13 13:54:23",
+                "code": "012345678",
+                "max_uses": 1
             }
