@@ -187,6 +187,41 @@ Get a list of all products avaiable at a specific location.
             ]
 
 
+### Purchase Product [POST /products/purchase]
+
+Records the sale of a product and return the code created for the product.
+
++ Request
+
+    + Header
+    
+            app_key: 71d6ed46ab67aa4602c8c41c64c4b954
+        
+    + Body
+    
+            {
+                "id": 1,
+                "purchased_on": "2017-2-1 11:25:13",
+                "card_type": "Visa",
+                "card_number": "###1234",
+                "auth_number": "12345456"
+                "amount": 15.00
+            }
+    
++ Response 200 (application/json)
+
+            {
+                "id": 1
+                "name": "Ultimate Wash",
+                "code": 012345678,
+                "purchased_on": "2017-01-13 13:54:23",
+                "expires_on": ""
+                "max_uses": 1,
+                "use_count": 1,
+                "last_used": "2017-01-13 13:56:13"
+                "locations": [123456789, 111222333, 666777888]
+           }
+
 ## Users [/users]
 
 User of the app. Can purchase car washes and redeem coupons.
