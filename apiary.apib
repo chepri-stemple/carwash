@@ -353,16 +353,17 @@ Verify the code emailed to the user before allowing the password to be changed.
 Product or Coupons that the user has purchased or claimed.
 
 ### List [GET]
++ Request
+
+     + Header
+    
+            app_key: 89b825b5134c507407be5ad51711d625
 
 + Parameters
     + auth_token (string, required) - token representing an authenticated user.
 
 + Response 200 (application/json)
 
-     + Header
-    
-            app_key: 89b825b5134c507407be5ad51711d625
-            
     + Body
     
             { 
@@ -425,16 +426,18 @@ Product or Coupons that the user has purchased or claimed.
 Deals available for the user to claim at any of the owners car washes. User is required to filter out claimed ones.
 
 ### List Deals [GET]
++ Request
+
+     + Header
+    
+            app_key: 89b825b5134c507407be5ad51711d625
 
 + Parameters
     + auth_token (required, string) - token representing an authenticated user.
 
 + Response 200 (application/json)
 
-     + Header
-    
-            app_key: 89b825b5134c507407be5ad51711d625
-            
+
     + Body
     
             [
