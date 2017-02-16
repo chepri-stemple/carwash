@@ -441,34 +441,45 @@ Deals available for the user to claim at any of the owners car washes. User is r
     + Body
     
             [
-                { 
-                    "id": 1
-                    "name": "$2 off any wash",
-                    "description": "Claim this and get $2 off your next wash!",
-                    "terms": "May not be conmbined with any other offer."
-                    "expires_on": "2017-03-01",
-                    "claim_limit": 3,
-                    "number_claimed": 2,
-                    "locations": [123456789, 111222333, 666777888]
-                },
-                {
-                    "id": 2
-                    "name": "$3 off the Ultimate",
-                    "description": "Claim this and get $2 off your next wash!",
-                    "terms": "May not be conmbined with any other offer."
-                    "expires_on": "2017-03-01",
-                    "claim_limit": 1,
-                    "number_claimed": 0,
-                    "locations": [123456789, 111222333]
-                }
-            ]
+              {
+                "claim_limit": 1,
+                "description": "Get 1$ off the Prmium Wash",
+                "expires_on": "2017-02-25 12:00:00.000",
+                "id": 4,
+                "locations": [
+                  178984815,
+                  945428234
+                ],
+                "name": "$1 Premium Wash (app)",
+                "number_claimed": 0,
+                "terms": "Cannot be combined with any other offer."
+              },
+              {
+                "claim_limit": 1,
+                "description": "Get a from Basic wash for signing up.",
+                "expires_on": null,
+                "id": 8,
+                "locations": [
+                  945428234
+                ],
+                "name": "Free Basic for Sign Up",
+                "number_claimed": 0,
+                "terms": "Cannot be combined with other offers."
+              }
+            ]         
             
-### List Deails for a Location [GET /users/{auth_token}/locations/{location_id}/deals]
+### List Deals for a Location [GET /users/{auth_token}/locations/{location_id}/deals]
 
 Deals available for the user to claim at a particular location.  User is required to filter out claimed ones.
 
++ Request
+
+     + Header
+    
+            app_key: 89b825b5134c507407be5ad51711d625
+
 + Parameters
-    + location_id: 666777888 (number, required) - ID of the Location
+    + location_id: 945428234 (number, required) - ID of the Location
     + auth_token (string, required) - token representing an authenticated user.
 
 + Response 200 (application/json)
@@ -480,18 +491,21 @@ Deals available for the user to claim at a particular location.  User is require
     + Body
     
             [
-                { 
-                    "id": 1
-                    "name": "$2 off any wash",
-                    "description": "Clai this and get $2 off your next wash!",
-                    "terms": "May not be conmbined with any other offer."
-                    "expires_on": "2017-03-01",
-                    "claim_limit": 3,
-                    "number_claimed": 2,
-                    "locations": [123456789, 111222333, 666777888]
-                }
+              {
+                "claim_limit": 1,
+                "description": "Get 1$ off the Prmium Wash",
+                "expires_on": "2017-02-25 12:00:00.000",
+                "id": 4,
+                "locations": [
+                  178984815,
+                  945428234
+                ],
+                "name": "$1 Premium Wash (app)",
+                "number_claimed": 0,
+                "terms": "Cannot be combined with any other offer."
+              }
             ]
-
+            
 ### Claim Deal [POST /users/{auth_token}/deals/{deal_id}]
 
 + Parameters
