@@ -106,7 +106,14 @@ Get a list all products for all locations.
                         "Wash",
                         "Under Carriage Blast",
                         "Turbo Dry"
-                    ]
+                    ],
+                    "logo": {
+                        "image": 3,
+                        "red": 200,
+                        "green": 100,
+                        "blue": 75,
+                        "alpha": 0.8
+                    }
                 },
                 {
                     "id": 2,
@@ -116,7 +123,14 @@ Get a list all products for all locations.
                     "details": [
                         "Wash",
                         "Wax"
-                    ]
+                    ],
+                    "logo": {
+                        "image": 3,
+                        "red": 200,
+                        "green": 100,
+                        "blue": 75,
+                        "alpha": 0.8
+                    }
                 }
             ]
 
@@ -146,7 +160,14 @@ Get a specific product by product ID.
                     "Wash",
                     "Under Carriage Blast",
                     "Turbo Dry"
-                ]
+                ],
+                "logo": {
+                    "image": 3,
+                    "red": 200,
+                    "green": 100,
+                    "blue": 75,
+                    "alpha": 0.8
+                }
             }
 
 ### Get All Location Products[GET /locations/{location_id}/products]
@@ -387,7 +408,14 @@ Product or Coupons that the user has purchased or claimed.
                         "purchase_amount": 15.00,
                         "is_gift": true,
                         "gifted_to": "Jane Doe",
-                        "gifted_email": "jdoe@email.com"
+                        "gifted_email": "jdoe@email.com",
+                        "logo": {
+                            "image": 3,
+                            "red": 200,
+                            "green": 100,
+                            "blue": 75,
+                            "alpha": 0.8
+                        }
                    },
                    {
                         "id": 2
@@ -404,6 +432,13 @@ Product or Coupons that the user has purchased or claimed.
                         "auth_number": "12345456",
                         "purchase_amount": 15.00,
                         "is_gift": false,
+                        "logo": {
+                            "image": 3,
+                            "red": 200,
+                            "green": 100,
+                            "blue": 75,
+                            "alpha": 0.8
+                        }
                    }
                 ],
                 "deals":
@@ -417,7 +452,14 @@ Product or Coupons that the user has purchased or claimed.
                         "max_uses": 1,
                         "use_count": 0,
                         "last_used": ""
-                        "locations": [123456789, 111222333, 666777888]
+                        "locations": [123456789, 111222333, 666777888],
+                        "logo": {
+                            "image": 3,
+                            "red": 200,
+                            "green": 100,
+                            "blue": 75,
+                            "alpha": 0.8
+                        }
                     }
                 ]
             }
@@ -454,7 +496,14 @@ Deals available for the user to claim at any of the owners car washes. User is r
                 ],
                 "name": "$1 Premium Wash (app)",
                 "number_claimed": 0,
-                "terms": "Cannot be combined with any other offer."
+                "terms": "Cannot be combined with any other offer.",
+                "logo": {
+                    "image": 3,
+                    "red": 200,
+                    "green": 100,
+                    "blue": 75,
+                    "alpha": 0.8
+                }
               },
               {
                 "claim_limit": 1,
@@ -466,7 +515,14 @@ Deals available for the user to claim at any of the owners car washes. User is r
                 ],
                 "name": "Free Basic for Sign Up",
                 "number_claimed": 0,
-                "terms": "Cannot be combined with other offers."
+                "terms": "Cannot be combined with other offers.",
+                "logo": {
+                    "image": 3,
+                    "red": 200,
+                    "green": 100,
+                    "blue": 75,
+                    "alpha": 0.8
+                }
               }
             ]         
             
@@ -504,7 +560,14 @@ Deals available for the user to claim at a particular location.  User is require
                 ],
                 "name": "$1 Premium Wash (app)",
                 "number_claimed": 0,
-                "terms": "Cannot be combined with any other offer."
+                "terms": "Cannot be combined with any other offer.",
+                "logo": {
+                    "image": 3,
+                    "red": 200,
+                    "green": 100,
+                    "blue": 75,
+                    "alpha": 0.8
+                }
               }
             ]
             
@@ -554,7 +617,14 @@ Records the sale of a product and return the code created for the product.
                 "purchase_amount": 15.00,
                 "is_gift": true,
                 "gifted_to": "Jane Doe",
-                "gifted_email": "jdoe@email.com"
+                "gifted_email": "jdoe@email.com",
+                "logo": {
+                    "image": 3,
+                    "red": 200,
+                    "green": 100,
+                    "blue": 75,
+                    "alpha": 0.8
+                }
             }
     
 + Response 200 (application/json)
@@ -575,5 +645,12 @@ Records the sale of a product and return the code created for the product.
                 "purchase_amount": 15.00,
                 "is_gift": true,
                 "gifted_to": "Jane Doe",
-                "gifted_email": "jdoe@email.com"
+                "gifted_email": "jdoe@email.com",
+                "logo": {
+                    "image": 3,
+                    "red": 200,
+                    "green": 100,
+                    "blue": 75,
+                    "alpha": 0.8
+                }
           }
