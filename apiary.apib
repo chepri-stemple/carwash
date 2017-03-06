@@ -290,9 +290,9 @@ Request a password reset that will allow the user to change there
 
 + Response 204
 
-### Verify Password Reset Code [GET /users/forgot_password/{code}]
+### Create a New Password  [POST /users/forgot_password/{code}]
 
-Verify the code emailed to the user before allowing the password to be changed. 
+Changes the users password as long as the code is active and the email_address matches 
 
 + Parameters
     + code: 123456 (number, required) Password reset verification code.
@@ -307,9 +307,22 @@ Verify the code emailed to the user before allowing the password to be changed.
     
             {
                 "email_address": "string",
+                "password": "string"
             }
 
 + Response 204
+
++ Response 401
+
+    Returned if the code has expired or does not match the email.
+    
+    + Body
+
++ Response 404
+
+    Returned if code not found.
+
+    + Body
 
 
 ##  Authorized Users [/users/{auth_token}]
