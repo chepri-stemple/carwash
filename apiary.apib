@@ -290,6 +290,7 @@ Request a password reset that will allow the user to change there
 
 + Response 204
 
+
 ### Create a New Password  [POST /users/forgot_password/{code}]
 
 Changes the users password as long as the code is active and the email_address matches 
@@ -308,9 +309,17 @@ Changes the users password as long as the code is active and the email_address m
             {
                 "email_address": "string",
                 "password": "string"
+                "device_id": "eb577432a6378798b408e77531656c5c"
             }
 
-+ Response 204
++ Response 200
+
+        {
+            "first_name": "Sean",
+            "last_name": "Temple",
+            "email_address": "stemple@chepri.com",
+            "auth_token": "65wa6MVCAHiSGv3ilmrSTlk5L20l6nCQ",
+        }
 
 + Response 401
 
@@ -323,6 +332,7 @@ Changes the users password as long as the code is active and the email_address m
     Returned if code not found.
 
     + Body
+
 
 
 ##  Authorized Users [/users/{auth_token}]
