@@ -670,4 +670,30 @@ Records the sale of a product and return the code created for the product.
                     "blue": 75,
                     "alpha": 0.8
                 }
-          }
+            }
+            
+## Settings [/settings]
+
+### Credit card processor [GET /settings/processor]
+
+Get the payment gateway settings necessary for processing credit cards.
+
+JSON properties:
+processor -     The name of the processor
+username -      For E-xact this is the Gateway ID.  For Payment Express
+                this PostUsername
+password - 
+
++ Request
+
+    + Header
+    
+            app_key: 89b825b5134c507407be5ad51711d625
+
++ Response 200 (application/json)
+
+            {
+                "processor": "E-xact",
+                "username": "A00000-0",
+                "password":"test123"
+            }
