@@ -672,6 +672,73 @@ Records the sale of a product and return the code created for the product.
                 }
             }
             
+### Get Purchase History [GET /users/{auth_token}/products]
+
+Get a list of all products purchased by the user.
+
++ Request
+
+    + Header
+    
+            app_key: 89b825b5134c507407be5ad51711d625
+        
+
++ Response 200 (application/json)
+
+            [
+                {
+                    "id": 1
+                    "name": "Ultimate Wash",
+                    "locations": [123456789, 111222333, 666777888],
+                    "code": 012345678,
+                    "purchased_on": "2017-01-13 13:54:23",
+                    "expires_on": ""
+                    "max_uses": 1,
+                    "use_count": 1,
+                    "last_used": "2017-01-13 13:56:13",
+                    "card_type": "Visa",
+                    "card_number": "###1234",
+                    "auth_number": "12345456",
+                    "purchase_amount": 15.00,
+                    "is_gift": true,
+                    "gifted_to": "Jane Doe",
+                    "gifted_email": "jdoe@email.com",
+                    "gift_message": "Get your car clean!",
+                    "logo": {
+                        "image": 3,
+                        "red": 200,
+                        "green": 100,
+                        "blue": 75,
+                        "alpha": 0.8
+                    }
+               },
+               {
+                    "id": 2
+                    "name": "Premium Wash",
+                    "locations": [123456789, 111222333, 666777888],
+                    "code": 123456789,
+                    "purchased_on": "2017-01-13 13:54:23",
+                    "expires_on": "2017-04-01",
+                    "max_uses": 5,
+                    "use_count": 1,
+                    "last_used": "2017-01-13 13:56:13"
+                    "card_type": "Visa",
+                    "card_number": "###1234",
+                    "auth_number": "12345456",
+                    "purchase_amount": 15.00,
+                    "is_gift": false,
+                    "logo": {
+                        "image": 3,
+                        "red": 200,
+                        "green": 100,
+                        "blue": 75,
+                        "alpha": 0.8
+                    }
+               }
+            ]
+
+ 
+            
 ## Settings [/settings]
 
 ### Credit card processor [GET /settings/processor]
